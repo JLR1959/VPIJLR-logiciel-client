@@ -1,0 +1,6 @@
+{
+  "appId": "com.vpijlr.app",
+  "appName": "VPIJLR",
+  "webDir": "www",
+  "bundledWebRuntime": false
+}
