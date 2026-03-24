@@ -1,12 +1,13 @@
 {
-  "name": "vpijlr-logiciel-client",
+  "name": "vpijlr-server",
   "version": "1.0.0",
-  "description": "Client VPIJLR 2026 - Interface Licence Manager",
-  "main": "index.js",
+  "main": "src/server.js",
+  "type": "commonjs",
   "scripts": {
-    "start": "serve -s ."
+    "start": "node src/server.js"
   },
   "dependencies": {
-    "serve": "^14.2.0"
+    "express": "^4.19.2",
+    "cors": "^2.8.5"
   }
 }
