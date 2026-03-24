@@ -1,0 +1,12 @@
+{
+  "name": "vpijlr-logiciel-client",
+  "version": "1.0.0",
+  "description": "Client VPIJLR 2026 - Interface Licence Manager",
+  "main": "index.js",
+  "scripts": {
+    "start": "serve -s ."
+  },
+  "dependencies": {
+    "serve": "^14.2.0"
+  }
+}

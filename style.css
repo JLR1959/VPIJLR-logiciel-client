@@ -1,0 +1,987 @@
+/* ======================================================
+MODULE CSS 1
+PALETTE
+====================================================== */
+
+:root{
+
+--bleu:#2563eb;
+--bleu-fonce:#1e3a8a;
+--bleu-profond:#1e40af;
+
+--vert:#16a34a;
+
+--fond:#eef2f7;
+--carte:#ffffff;
+--texte:#1f2937;
+
+}
+
+
+/* ======================================================
+MODULE CSS 2
+BASE
+====================================================== */
+
+body{
+
+margin:0;
+padding:30px;
+
+background:linear-gradient(135deg,#eef2f7,#dbeafe);
+
+font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
+
+color:var(--texte);
+
+}
+
+
+/* ======================================================
+MODULE CSS 3
+BANDEAU MODE VÉRIFICATION
+====================================================== */
+
+#bandeau-mode-verification{
+
+position:sticky;
+
+top:0;
+
+width:100%;
+
+padding:14px;
+
+font-size:18px;
+font-weight:700;
+
+text-align:center;
+
+background:#e5e7eb;
+color:#1f2937;
+
+border-bottom:2px solid #d1d5db;
+
+z-index:1000;
+
+}
+
+
+/* ======================================================
+MODULE CSS 4
+COULEURS MODE
+====================================================== */
+
+.bandeau-interieur{
+background:#dbeafe;
+color:#1e40af;
+}
+
+.bandeau-exterieur{
+background:#dcfce7;
+color:#166534;
+}
+
+
+/* ======================================================
+MODULE CSS 5
+ENTÊTE ENTREPRISE
+====================================================== */
+
+header{
+
+background:linear-gradient(
+135deg,
+#1e3a8a,
+#2563eb,
+#1e40af
+);
+
+text-align:center;
+
+border-radius:18px;
+
+padding:45px 25px;
+
+margin-bottom:25px;
+
+box-shadow:
+0 25px 60px rgba(0,0,0,0.45);
+
+}
+
+
+/* ======================================================
+MODULE CSS 6
+TITRE PRINCIPAL
+====================================================== */
+
+header h1{
+
+font-size:36px;
+font-weight:900;
+
+color:#ffd700;
+
+text-shadow:
+0 1px 0 #b89600,
+0 2px 0 #a38300,
+0 3px 0 #8c6f00,
+0 4px 6px rgba(0,0,0,0.6),
+0 8px 20px rgba(0,0,0,0.6);
+
+}
+
+
+/* ======================================================
+MODULE CSS 7
+NOM CONSULTANT
+====================================================== */
+
+header h2{
+
+font-size:28px;
+font-weight:800;
+
+color:#ffdf33;
+
+text-shadow:
+0 1px 0 #b89600,
+0 2px 0 #8c6f00,
+0 4px 10px rgba(0,0,0,0.6);
+
+}
+
+
+/* ======================================================
+MODULE CSS 8
+TEXTE ENTÊTE
+====================================================== */
+
+header p{
+
+color:#e5e7eb;
+
+font-weight:500;
+
+}
+
+
+/* ======================================================
+MODULE CSS 9
+CARTES INTERFACE
+====================================================== */
+
+section,
+footer{
+
+background:var(--carte);
+
+border-radius:16px;
+
+padding:25px;
+
+margin-bottom:22px;
+
+box-shadow:
+0 12px 30px rgba(0,0,0,0.08),
+0 40px 80px rgba(0,0,0,0.12);
+
+transition:transform .2s ease, box-shadow .2s ease;
+
+}
+
+section:hover{
+
+transform:translateY(-5px);
+
+box-shadow:
+0 20px 50px rgba(0,0,0,0.12),
+0 60px 120px rgba(0,0,0,0.15);
+
+}
+
+
+/* ======================================================
+MODULE CSS 10
+TITRES SECTIONS
+====================================================== */
+
+h2{
+
+margin-top:0;
+padding-bottom:8px;
+
+border-bottom:2px solid #e5e7eb;
+
+}
+
+
+/* ======================================================
+MODULE CSS 11
+LABELS
+====================================================== */
+
+label{
+
+display:block;
+
+margin-top:12px;
+
+font-weight:600;
+
+}
+
+
+/* ======================================================
+MODULE CSS 12
+CHAMPS FORMULAIRE
+====================================================== */
+
+input,
+select,
+textarea{
+
+width:100%;
+max-width:400px;
+
+padding:10px 12px;
+
+border-radius:10px;
+
+border:2px solid #cbd5e1;
+
+background:#ffffff;
+
+font-size:14px;
+
+box-shadow:
+inset 0 2px 4px rgba(0,0,0,0.06);
+
+transition:.2s;
+
+}
+
+
+/* ======================================================
+MODULE CSS 13
+EFFETS CHAMPS
+====================================================== */
+
+input:hover,
+select:hover,
+textarea:hover{
+
+border-color:#94a3b8;
+
+}
+
+input:focus,
+select:focus,
+textarea:focus{
+
+outline:none;
+
+border-color:var(--bleu);
+
+box-shadow:
+0 0 0 3px rgba(37,99,235,0.25),
+inset 0 2px 4px rgba(0,0,0,0.05);
+
+}
+
+
+/* ======================================================
+MODULE CSS 14
+NUMÉRO DOSSIER
+====================================================== */
+
+#numeroDossier{
+
+background:#e5e5e5;
+
+color:#444;
+
+border:2px dashed #9ca3af;
+
+cursor:not-allowed;
+
+}
+
+
+/* ======================================================
+MODULE CSS 15
+BOUTONS
+====================================================== */
+
+button{
+
+background:#2563eb;
+color:white;
+
+border:none;
+
+border-radius:10px;
+
+padding:12px 20px;
+
+font-size:14px;
+font-weight:700;
+
+cursor:pointer;
+
+box-shadow:
+0 8px 0 #1e40af,
+0 15px 30px rgba(0,0,0,0.25);
+
+transition:all .15s ease;
+
+}
+
+button:hover{
+
+transform:translateY(-2px);
+
+box-shadow:
+0 10px 0 #1e40af,
+0 18px 35px rgba(0,0,0,0.3);
+
+}
+
+button:active{
+
+transform:translateY(6px);
+
+box-shadow:
+0 2px 0 #1e40af,
+0 6px 10px rgba(0,0,0,0.2);
+
+}
+
+
+/* ======================================================
+MODULE CSS 16
+BOUTONS TYPE VÉRIFICATION
+====================================================== */
+
+#choix-verification{
+
+display:flex;
+gap:20px;
+
+margin-bottom:20px;
+
+}
+
+.type-btn{
+
+flex:1;
+
+font-size:18px;
+
+padding:18px;
+
+border-radius:12px;
+
+font-weight:700;
+
+cursor:pointer;
+
+border:none;
+
+box-shadow:
+0 10px 0 rgba(0,0,0,0.2),
+0 20px 40px rgba(0,0,0,0.25);
+
+transition:all .15s ease;
+
+}
+
+.type-btn:active{
+
+transform:translateY(6px);
+
+box-shadow:
+0 2px 0 rgba(0,0,0,0.2);
+
+}
+
+.interieur{
+background:#dbeafe;
+color:#1e40af;
+}
+
+.exterieur{
+background:#dcfce7;
+color:#166534;
+}
+
+.type-btn.actif{
+
+transform:scale(1.05);
+
+box-shadow:0 0 0 4px rgba(37,99,235,0.35);
+
+}
+
+
+/* ======================================================
+MODULE CSS 17
+INDICATEUR MODE
+====================================================== */
+
+#mode-verification-indicateur{
+
+margin-top:12px;
+
+padding:14px;
+
+border-radius:8px;
+
+font-size:16px;
+
+font-weight:700;
+
+text-align:center;
+
+display:none;
+
+}
+
+.mode-interieur{
+background:#dbeafe;
+color:#1e40af;
+}
+
+.mode-exterieur{
+background:#dcfce7;
+color:#166534;
+}
+
+
+/* ======================================================
+MODULE CSS 18
+PIÈCES VÉRIFICATION (BOUTONS À GAUCHE)
+====================================================== */
+
+.piece-container{
+
+background:#ffffff;
+
+border-radius:12px;
+
+padding:16px;
+
+margin:14px 0;
+
+box-shadow:
+0 6px 16px rgba(0,0,0,0.08),
+0 12px 30px rgba(0,0,0,0.10);
+
+transition:transform .2s;
+
+}
+
+.piece-container:hover{
+transform:translateY(-3px);
+}
+
+.piece-header{
+
+display:flex;
+align-items:center;
+gap:10px;
+
+margin-bottom:10px;
+
+}
+
+.piece-actions{
+
+display:flex;
+gap:8px;
+
+margin-left:0;
+
+}
+
+
+/* ======================================================
+MODULE CSS 19
+SIGNATURES
+====================================================== */
+
+canvas{
+
+border-radius:10px;
+
+border:1px solid #e5e7eb;
+
+background:white;
+
+box-shadow:
+0 4px 10px rgba(0,0,0,0.08);
+
+}
+
+
+/* ======================================================
+MODULE CSS 20
+MINUTEUR ACTIF
+====================================================== */
+
+#section-minuteur{
+display:block;
+}
+
+#minuteur-container{
+
+margin-top:10px;
+
+padding:15px;
+
+background:#f8fafc;
+
+border-radius:10px;
+
+border:1px solid #e2e8f0;
+
+display:flex;
+
+flex-direction:column;
+
+gap:10px;
+
+max-width:320px;
+
+}
+
+#affichage-minuteur{
+
+font-size:22px;
+
+font-weight:700;
+
+color:#1e40af;
+
+}
+
+#affichage-montant{
+
+font-size:18px;
+
+font-weight:700;
+
+color:#16a34a;
+
+}
+
+
+/* ======================================================
+MODULE CSS 21
+RAPPORT IMPRESSION
+====================================================== */
+
+#rapport-impression{
+
+display:none;
+
+}
+
+
+/* ======================================================
+MODULE CSS 22
+SCEAU
+====================================================== */
+
+.sceau-image{
+
+width:120px;
+
+display:block;
+
+margin:20px auto;
+
+opacity:0.9;
+
+}
+
+
+/* ======================================================
+MODULE CSS 23
+MODE IMPRESSION
+====================================================== */
+
+@media print{
+
+body *{
+visibility:hidden;
+}
+
+#rapport-impression,
+#rapport-impression *{
+visibility:visible;
+}
+
+#rapport-impression{
+
+display:block;
+
+position:absolute;
+
+top:0;
+left:0;
+
+width:100%;
+
+padding:30px;
+
+}
+
+button,
+.no-print{
+display:none !important;
+}
+
+}
+
+
+/* ======================================================
+MODULE CSS 24
+RESPONSIVE
+====================================================== */
+
+@media (max-width:800px){
+
+header h1{
+
+font-size:28px;
+
+}
+
+header h2{
+
+font-size:22px;
+
+}
+
+}
+
+
+/* ======================================================
+MODULE CSS 25
+INDICATEUR CHAMPS
+====================================================== */
+
+.etat-champ{
+
+margin-left:10px;
+
+font-size:13px;
+
+display:inline-flex;
+
+align-items:center;
+
+gap:6px;
+
+}
+
+.indicateur-etape{
+
+width:10px;
+height:10px;
+
+border-radius:50%;
+
+display:inline-block;
+
+}
+
+.etape-ok{
+background:#16a34a;
+}
+
+.etape-ko{
+background:#ef4444;
+}
+
+.texte-etape{
+font-weight:600;
+}
+
+
+/* ======================================================
+MODULE CSS 26
+LÉGENDE INDICATEURS
+====================================================== */
+
+#legende-indicateurs{
+
+margin-top:10px;
+
+display:flex;
+
+gap:20px;
+
+font-size:14px;
+
+align-items:center;
+
+}
+
+.legende-item{
+
+display:flex;
+
+align-items:center;
+
+gap:6px;
+
+}
+
+
+/* ======================================================
+MODULE CSS 27
+SECTION REPLIABLE
+====================================================== */
+
+.section-replie{
+display:none;
+}
+
+/* ======================================================
+MODULE CSS 28
+MINUTEUR CACHÉ PAR DÉFAUT
+====================================================== */
+
+#section-minuteur{
+display:none;
+}
+
+.minuteur-visible{
+display:block !important;
+}
+
+/* ======================================================
+MODULE CSS 29
+PANNEAU ADMIN
+====================================================== */
+
+#admin-minuteur{
+
+background:#fff7ed;
+
+border:2px dashed #fb923c;
+
+}
+
+#admin-minuteur h2{
+
+color:#c2410c;
+
+}
+
+/* ======================================================
+MODULE CSS SIGNATURE RAPPORT
+====================================================== */
+
+.signature-rapport{
+
+max-width:300px;
+
+border:1px solid #ccc;
+
+margin-top:10px;
+
+}
+
+/* ======================================================
+MODULE CSS 30
+SECTION LICENCES COMMERCIALES
+À AJOUTER À LA FIN DU FICHIER
+====================================================== */
+
+#licences-vpijlr{
+
+margin-top:40px;
+
+}
+
+.licences-container{
+
+display:flex;
+
+gap:30px;
+
+flex-wrap:wrap;
+
+justify-content:center;
+
+margin-top:30px;
+
+}
+
+.licence{
+
+background:#ffffff;
+
+border:1px solid #e5e7eb;
+
+border-radius:14px;
+
+padding:30px;
+
+width:280px;
+
+text-align:center;
+
+box-shadow:
+0 12px 30px rgba(0,0,0,0.08),
+0 30px 60px rgba(0,0,0,0.12);
+
+transition:.25s;
+
+}
+
+.licence:hover{
+
+transform:translateY(-6px);
+
+box-shadow:
+0 20px 50px rgba(0,0,0,0.12),
+0 60px 120px rgba(0,0,0,0.15);
+
+}
+
+.licence h3{
+
+margin-top:0;
+
+font-size:22px;
+
+color:var(--bleu-profond);
+
+}
+
+.prix{
+
+font-size:30px;
+
+font-weight:900;
+
+color:var(--bleu);
+
+margin:20px 0;
+
+}
+
+.licence ul{
+
+list-style:none;
+
+padding:0;
+
+margin:20px 0;
+
+}
+
+.licence li{
+
+padding:6px 0;
+
+font-weight:500;
+
+}
+
+.licence button{
+
+margin-top:10px;
+
+width:100%;
+
+font-size:16px;
+
+padding:14px;
+
+}
+
+
+/* ======================================================
+MODULE CSS 31
+SECTION ENGAGEMENT
+====================================================== */
+
+#engagement-vpijlr{
+
+margin-top:40px;
+
+}
+
+#engagement-vpijlr ul{
+
+margin-top:15px;
+
+padding-left:20px;
+
+}
+
+#engagement-vpijlr li{
+
+margin-bottom:10px;
+
+font-weight:500;
+
+}
+
+
+/* ======================================================
+MODULE CSS 32
+APPEL À L'ACTION
+====================================================== */
+
+#appel-action{
+
+text-align:center;
+
+margin-top:50px;
+
+}
+
+#appel-action button{
+
+font-size:18px;
+
+padding:16px 30px;
+
+background:var(--vert);
+
+box-shadow:
+0 8px 0 #15803d,
+0 15px 30px rgba(0,0,0,0.25);
+
+}
+
+#appel-action button:hover{
+
+background:#22c55e;
+
+}
+
+
+/* ======================================================
+MODULE CSS 33
+RESPONSIVE LICENCES
+====================================================== */
+
+@media (max-width:900px){
+
+.licences-container{
+
+flex-direction:column;
+
+align-items:center;
+
+}
+
+}

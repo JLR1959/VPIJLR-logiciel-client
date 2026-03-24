@@ -1,0 +1,782 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+
+<meta charset="utf-8">
+<title>Vérification Préventive Immobilière VPIJLR 2026</title>
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#1f3a60">
+
+<link rel="icon" href="favicon.ico">
+
+<link href="style.css" rel="stylesheet">
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+
+<script defer src="cloud-sync.js"></script>
+<script defer src="app.js"></script>
+<script defer src="typeVerification.js"></script>
+<script defer src="gestionImpression.js"></script>
+<script defer src="signatureMobile.js"></script>
+<script defer src="autoSauvegarde.js"></script>
+<script defer src="gestionPiecesActives.js"></script>
+
+</head>
+
+<body>
+
+<div id="info-licence" style="margin-top:10px;font-weight:bold;"></div>
+
+<!-- ======================================================
+MODULE 2 - BANDEAU MODE VÉRIFICATION
+====================================================== -->
+
+<div id="bandeau-mode-verification">
+    Mode de vérification : NON SÉLECTIONNÉ
+</div>
+
+<!-- ======================================================
+MODULE 3 - ENTÊTE ENTREPRISE
+====================================================== -->
+
+<header style="text-align:center;">
+    <img src="logo_jlr.png" alt="Logo JLR" style="max-height:80px;">
+    <h1>Vérification Préventive Immobilière VPIJLR 2026</h1>
+</header>
+
+
+<!-- ======================================================
+MODULE 4 - FORMULAIRE CLIENT (VALIDATION STRICTE + DATE AUTO)
+====================================================== -->
+
+<section id="formulaire-client">
+
+<h2>
+Informations du client
+
+<button
+type="button"
+onclick="basculerSectionClient()"
+class="no-print"
+style="margin-left:12px;">
+Replier / Déplier
+</button>
+
+</h2>
+
+<div id="contenu-client">
+
+<!-- DOSSIER -->
+
+<label>***Numéro de dossier automatique***
+<input type="text" id="numeroDossier" readonly>
+</label>
+
+<!-- NOM -->
+
+<label>1) Nom du locataire
+
+<input type="text" id="locataire" placeholder="Ex: Jean Dupont">
+
+<span id="erreur-locataire" class="erreur-bulle"></span>
+
+<span class="etat-champ">
+<span id="etat-locataire" class="indicateur-etape etape-ko"></span>
+<span class="texte-etape">Nom complet requis</span>
+</span>
+
+</label>
+
+<!-- TELEPHONE -->
+
+<label>2) Téléphone
+
+<input type="tel" id="telephone" placeholder="(514) 123-4567">
+
+<span id="erreur-telephone" class="erreur-bulle"></span>
+
+<span class="etat-champ">
+<span id="etat-telephone" class="indicateur-etape etape-ko"></span>
+<span class="texte-etape">Format valide requis</span>
+</span>
+
+</label>
+
+<!-- APPARTEMENT -->
+
+<label>3) Numéro d’appartement</label>
+
+<div style="display:flex; gap:10px;">
+
+<input 
+type="text" 
+id="numeroAppartement" 
+placeholder="Ex: 301"
+style="flex:2;">
+
+<input 
+type="text" 
+id="suffixeAppartement" 
+placeholder="Ex: A"
+maxlength="1"
+style="flex:1; text-transform:uppercase;">
+
+</div>
+
+<span id="erreur-appartement" class="erreur-bulle"></span>
+
+<span class="etat-champ">
+<span id="etat-numeroAppartement" class="indicateur-etape etape-ko"></span>
+<span class="texte-etape">Numéro valide requis</span>
+</span>
+
+<!-- ADRESSE -->
+
+<label>4) Adresse
+<input type="text" id="adresse">
+</label>
+
+<!-- VILLE -->
+
+<label>5) Ville (Québec)
+
+<input list="villes-quebec"
+id="ville-quebec"
+placeholder="Sélectionner ou taper une ville">
+
+<datalist id="villes-quebec">
+
+<option value="Montréal">
+<option value="Québec">
+<option value="Laval">
+<option value="Gatineau">
+<option value="Longueuil">
+<option value="Sherbrooke">
+<option value="Saguenay">
+<option value="Trois-Rivières">
+<option value="Lévis">
+<option value="Terrebonne">
+<option value="Saint-Jean-sur-Richelieu">
+<option value="Repentigny">
+<option value="Drummondville">
+<option value="Saint-Jérôme">
+<option value="Granby">
+<option value="Blainville">
+<option value="Boucherville">
+<option value="Mascouche">
+<option value="Rimouski">
+<option value="Rouyn-Noranda">
+<option value="Val-d'Or">
+<option value="Alma">
+<option value="Baie-Comeau">
+<option value="Sept-Îles">
+<option value="La Tuque">
+<option value="Amos">
+<option value="Mont-Tremblant">
+<option value="Sainte-Thérèse">
+<option value="Saint-Eustache">
+<option value="Candiac">
+<option value="Bromont">
+<option value="Sorel-Tracy">
+<option value="Magog">
+<option value="Saint-Georges">
+<option value="Thetford Mines">
+<option value="Victoriaville">
+
+</datalist>
+
+</label>
+
+<!-- CODE POSTAL -->
+
+<label>6) Code postal
+<input type="text" id="codePostal" placeholder="A1A 1A1">
+</label>
+
+<!-- PROVINCE -->
+
+<label>7) Province
+
+<select id="province">
+
+<option value="">Sélectionner</option>
+
+<option value="QC">Québec</option>
+<option value="ON">Ontario</option>
+<option value="NB">Nouveau-Brunswick</option>
+<option value="NS">Nouvelle-Écosse</option>
+<option value="MB">Manitoba</option>
+<option value="BC">Colombie-Britannique</option>
+<option value="PE">Île-du-Prince-Édouard</option>
+<option value="SK">Saskatchewan</option>
+<option value="AB">Alberta</option>
+<option value="NL">Terre-Neuve-et-Labrador</option>
+<option value="NT">Territoires du Nord-Ouest</option>
+<option value="YT">Yukon</option>
+<option value="NU">Nunavut</option>
+
+</select>
+
+</label>
+
+<!-- PAYS -->
+
+<label>8) Pays
+
+<select id="pays">
+
+<option value="">Sélectionner</option>
+<option value="CA">Canada</option>
+
+</select>
+
+</label>
+
+<!-- VERIFICATEUR -->
+
+<label>9) Vérificateur
+
+<select id="verificateur">
+
+<option value="">Sélectionner</option>
+
+<option>Vérificateur 1</option>
+<option>Vérificateur 2</option>
+<option>Vérificateur 3</option>
+<option>Vérificateur 4</option>
+
+</select>
+
+</label>
+
+<!-- DATE AUTO -->
+
+<label>10) Date de vérification
+
+<input type="date" id="verification-date" readonly>
+
+<span class="etat-champ">
+<span id="etat-verification-date" class="indicateur-etape etape-ok"></span>
+<span class="texte-etape">Date automatique</span>
+</span>
+
+</label>
+
+</div>
+
+</section>
+
+
+
+<!-- ======================================================
+MODULE 5
+TYPE DE VÉRIFICATION
+====================================================== -->
+
+<section>
+
+<label>12) Choisissez votre type de vérification</label>
+
+<div id="choix-verification">
+
+<button type="button" id="btn-interieur"
+onclick="choisirVerification('interieur')"
+class="type-btn interieur">
+
+🏠 Vérification Intérieure
+
+</button>
+
+<button type="button" id="btn-exterieur"
+onclick="choisirVerification('exterieur')"
+class="type-btn exterieur">
+
+🌳 Vérification Extérieure
+
+</button>
+
+<input type="hidden" id="type-verification">
+
+</div>
+
+<div id="mode-verification-indicateur"></div>
+
+</section>
+
+
+
+<!-- ======================================================
+MODULE 6 - SÉLECTION DES PIÈCES
+====================================================== -->
+
+<section>
+
+<label>12) Sélectionnez les pièces ou éléments</label>
+
+<select id="type-piece">
+
+<option value="">Pièces ou éléments</option>
+
+<optgroup label="Intérieur" id="pieces-interieur">
+
+<option>Cuisine</option>
+<option>Salle de bain</option>
+<option>Salle d'eau</option>
+<option>Salle à manger</option>
+<option>Salon</option>
+<option>Chambre</option>
+<option>Bureau</option>
+<option>Corridor</option>
+<option>Escalier</option>
+<option>Hall d'entrée</option>
+<option>Sous-sol</option>
+<option>Salle mécanique</option>
+<option>Salle électrique</option>
+<option>Éclairage</option>
+<option>Salle lavage</option>
+<option>Réservoir eau chaude</option>
+
+</optgroup>
+
+<optgroup label="Extérieur" id="pieces-exterieur">
+
+<option>Garage</option>
+<option>Balcon</option>
+<option>Terrasse</option>
+<option>Piscine</option>
+<option>Verrière</option>
+<option>Climatisation</option>
+<option>Porte patio</option>
+<option>Stationnement</option>
+<option>Borne de recharge</option>
+<option>Clôture</option>
+<option>Cabanon</option>
+<option>Porte</option>
+<option>Vide sanitaire</option>
+
+</optgroup>
+
+</select>
+
+<button type="button" onclick="ajouterPiece()" class="no-print">
+13) Cliquez ici pour ouvrir
+</button>
+
+</section>
+
+
+
+<!-- ======================================================
+MODULE 7 - PIÈCES EN VÉRIFICATION
+====================================================== -->
+
+<section id="section-pieces-verification" style="display:none;">
+
+<h2>Pièces en cours de vérification</h2>
+
+<div id="liste-pieces"></div>
+
+</section>
+
+<!-- ======================================================
+MODULE 8 - SIGNATURES REPLIABLES
+====================================================== -->
+
+<section id="section-signatures">
+
+<h2>Signatures</h2>
+
+<button
+type="button"
+id="bouton-signatures"
+onclick="basculerSectionSignatures()"
+class="no-print">
+Replier signatures
+</button>
+
+<div id="contenu-signatures">
+
+<label>Signature du client</label>
+
+<canvas id="signature-client" width="300" height="100"></canvas>
+
+<br>
+
+<button type="button" onclick="effacerSignatureLocataire()" class="no-print">
+Effacer signature client
+</button>
+
+<br><br>
+
+<label>Signature du consultant</label>
+
+<canvas id="signature-verificateur" width="300" height="100"></canvas>
+
+<br>
+
+<button type="button" onclick="effacerSignatureConsultant()" class="no-print">
+Effacer signature consultant
+</button>
+
+</div>
+
+</section>
+
+
+<!-- ======================================================
+MODULE 10
+PANNEAU ADMIN COMPLET (CLIENT PRO)
+====================================================== -->
+
+<section id="admin-minuteur" class="no-print">
+
+<h2>Mode administrateur</h2>
+
+<div id="zone-login-admin">
+
+<label>Mot de passe administrateur</label>
+
+<input type="password" id="admin-password">
+
+<button type="button" onclick="activerModeAdmin()">
+Accéder au mode admin
+</button>
+
+</div>
+
+<div id="admin-controles" style="display:none; margin-top:10px;">
+
+<!-- MINUTEUR -->
+
+<button type="button" onclick="basculerMinuteur()">
+Afficher / Cacher le minuteur
+</button>
+
+<!-- FACTURATION -->
+
+<button type="button" onclick="basculerFacturationAdmin()">
+Afficher / Cacher Facturation
+</button>
+
+<hr>
+
+<!-- IMPRESSION -->
+
+<button type="button" onclick="imprimerClient()">
+📄 Rapport CLIENT (sans facturation)
+</button>
+
+<button type="button" onclick="imprimerInterne()">
+🧾 Rapport INTERNE (avec facturation)
+</button>
+
+<hr>
+
+<!-- STATS -->
+
+<h3>Statistiques du jour</h3>
+
+<div style="background:#f4f6fb;padding:15px;border-radius:10px;max-width:300px;">
+
+<p>
+<strong>Vérifications :</strong><br>
+<span id="stats-count" style="font-size:22px;">0</span>
+</p>
+
+<p>
+<strong>Revenus :</strong><br>
+<span id="stats-revenue" style="font-size:22px;">0.00</span> $
+</p>
+
+</div>
+
+<hr>
+
+<!-- SORTIE -->
+
+<button type="button" onclick="desactiverModeAdmin()">
+Quitter mode admin
+</button>
+
+</div>
+
+</section>
+
+<!-- ======================================================
+MODULE 11 - MINUTEUR DE VÉRIFICATION
+====================================================== -->
+
+<section id="section-minuteur" class="no-print">
+
+<h2>Minuteur de vérification</h2>
+
+<div id="minuteur-container">
+
+<div id="affichage-minuteur">
+Temps : <span id="temps-affiche">00:00:00</span>
+</div>
+
+<div id="affichage-montant">
+Montant : <span id="montant-affiche">0.00 $</span>
+</div>
+
+</div>
+
+</section>
+
+<!-- ======================================================
+MODULE 12 - FIN DE VÉRIFICATION
+====================================================== -->
+
+<section class="no-print">
+
+<button type="button" onclick="verificationComplete()">
+
+VÉRIFICATION COMPLÈTE TERMINÉE
+
+</button>
+
+</section>
+
+<!-- ======================================================
+MODULE 13 - IMPRESSION DU RAPPORT
+====================================================== -->
+
+<footer class="no-print">
+
+<button type="button" onclick="imprimerRapport()">
+Imprimer le rapport
+</button>
+
+<script>
+
+<!-- ======================================================
+MODULE 13.1 - IMPRESSION RAPPORT STABLE
+======================================================-->
+
+function imprimerRapport(){
+
+if(typeof genererRapportImpression === "function"){
+genererRapportImpression();
+}
+
+if(typeof remplirInformationsRapport === "function"){
+remplirInformationsRapport();
+}
+
+if(typeof injecterFacturationRapport === "function"){
+injecterFacturationRapport();
+}
+
+const rapport = document.getElementById("rapport-impression");
+
+if(!rapport){
+alert("Zone de rapport introuvable.");
+return;
+}
+
+rapport.style.display = "block";
+
+setTimeout(function(){
+window.print();
+},300);
+
+setTimeout(function(){
+rapport.style.display = "none";
+},1000);
+
+}
+
+</script>
+
+</footer>
+
+<!-- ======================================================
+MODULE 14 - RAPPORT D’IMPRESSION
+====================================================== -->
+
+<div id="rapport-impression">
+
+<header style="text-align:center;">
+
+<img src="logo_jlr.png" alt="Logo JLR" style="max-height:80px;">
+
+
+<h1>Vérification Préventive Immobilière VPIJLR 2026</h1>
+
+</header>
+<div class="page-break"></div>
+
+<section>
+
+<h2>Informations client</h2>
+
+<p>Numéro de dossier : <span id="rapport-dossier"></span></p>
+<p>Locataire : <span id="rapport-locataire"></span></p>
+<p>Téléphone : <span id="rapport-telephone"></span></p>
+<p>Adresse : <span id="rapport-adresse"></span></p>
+
+</section>
+<div class="page-break"></div>
+<section>
+
+<h2>Éléments défectueux</h2>
+
+<div id="rapport-defauts">
+<p>Aucun problème détecté.</p>
+</div>
+
+</section>
+<div class="page-break"></div>
+<section>
+
+<h2>Éléments conformes</h2>
+
+<div id="rapport-conformes">
+<p>Aucun élément conforme détecté.</p>
+</div>
+
+</section>
+
+<!-- ======================================================
+MODULE 15 - FACTURATION RAPPORT DYNAMIQUE
+====================================================== -->
+<div class="page-break"></div>
+
+<section id="section-facturation">
+
+<h2>Facturation</h2>
+
+<p>Temps travaillé : <span id="rapport-heures">0.00</span> heures</p>
+
+<p>Taux horaire : 125.00 $ / heure</p>
+
+<p>Sous-total : <span id="rapport-sous-total">0.00</span> $</p>
+
+<p>TPS (5%) : <span id="rapport-tps">0.00</span> $</p>
+
+<p>TVQ (9.975%) : <span id="rapport-tvq">0.00</span> $</p>
+
+<h3>Total à payer : <span id="rapport-total">0.00</span> $</h3>
+
+</section>
+
+<!-- ======================================================
+MODULE SIGNATURES RAPPORT
+====================================================== -->
+<div class="page-break"></div>
+<section id="rapport-signatures">
+
+<h2>Signatures</h2>
+
+<p>Signature du client</p>
+<img id="rapport-signature-client" style="max-width:300px;border:1px solid #ccc">
+
+<br><br>
+
+<p>Signature du consultant</p>
+<img id="rapport-signature-consultant" style="max-width:300px;border:1px solid #ccc">
+
+</section>
+<!-- ======================================================
+MODULE 15.1 - SAUT DE PAGE
+====================================================== -->
+
+<div class="page-break"></div>
+
+<!-- ======================================================
+MODULE 15.2 - ATTESTATION DE CONFORMITÉ
+====================================================== -->
+
+<section id="sceau-conformite">
+
+<h2>Attestation de conformité de vérification</h2>
+
+<img src="sceau certification VPIJLR.png" alt="Sceau de conformité" class="sceau-image">
+
+<p>
+Je soussigné, Jean-Louis Raymond PDG et consultant de l'entreprise 
+en vérification préventive immobilière VPIJLR 2026,
+atteste que la présente vérification visuelle a été réalisée conformément aux règles
+de l’art et selon les pratiques généralement reconnues dans le domaine de la
+vérification préventive immobilière par la personne qui utilise ce logiciel.
+</p>
+
+<p>
+Les observations consignées dans ce rapport reflètent l’état apparent des éléments
+visibles au moment de la vérification.
+</p>
+
+<p><strong>Jean-Louis Raymond PDG de VPIJLR 2026</strong></p>
+<p><strong>VPIJLR 2026</strong></p>
+
+</section>
+
+<!-- ======================================================
+MODULE 15.3 - SAUT DE PAGE
+====================================================== -->
+
+<div class="page-break"></div>
+
+<!-- ======================================================
+MODULE 15.4 - AVIS LÉGAL RAPPORT
+====================================================== -->
+
+<section id="avis-legal-rapport">
+
+<h2>Avis légal</h2>
+
+<p>
+Le présent rapport constitue une vérification visuelle réalisée
+à la date indiquée dans ce document.
+</p>
+
+<p>
+Cette vérification ne constitue pas une inspection exhaustive
+du bâtiment ni une expertise technique complète des systèmes
+et composantes de la propriété.
+</p>
+
+<p>
+Les observations consignées dans ce rapport reflètent uniquement
+l’état apparent des éléments visibles et accessibles au moment
+de la vérification.
+</p>
+
+<p>
+Aucune garantie explicite ou implicite n’est donnée concernant
+l’état futur du bâtiment ou de ses composantes.
+</p>
+
+<p>
+Ce rapport est fourni à titre informatif afin d’aider le client
+à identifier certains éléments pouvant nécessiter une surveillance,
+un entretien ou une intervention.
+</p>
+
+<p>
+Toute reproduction, modification ou diffusion partielle ou totale
+de ce rapport sans l’autorisation écrite du consultant est interdite.
+</p>
+
+<p>
+Rapport généré électroniquement par le système de
+Vérification Préventive Immobilière VPIJLR 2026.
+</p>
+
+<p>
+<strong>Jean-Louis Raymond PDG de PVIJLR 2026</strong><br>
+Consultant en vérification préventive immobilière
+</p>
+
+</section>
+
+
+</div>
+
+</body>
+</html>
