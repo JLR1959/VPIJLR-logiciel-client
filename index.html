@@ -529,7 +529,7 @@ Montant : <span id="montant-affiche">0.00 $</span>
 </section>
 
 <!-- ======================================================
-MODULE 12 - FIN DE VÉRIFICATION
+MODULE 12 - FIN DE VÉRIFICATION (AVEC RESET CONTRÔLÉ)
 ====================================================== -->
 
 <section class="no-print">
@@ -537,6 +537,17 @@ MODULE 12 - FIN DE VÉRIFICATION
 <button type="button" onclick="verificationComplete()">
 
 VÉRIFICATION COMPLÈTE TERMINÉE
+
+</button>
+
+<br><br>
+
+<button 
+type="button" 
+class="no-print"
+onclick="if(confirm('Démarrer une nouvelle vérification ? Toutes les données actuelles seront effacées.')){ resetVerification(); }">
+
+NOUVELLE VÉRIFICATION
 
 </button>
 

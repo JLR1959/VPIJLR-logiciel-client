@@ -3260,56 +3260,178 @@ champ.value = dossier[id];
 
 }
 
-// ======================================================
-// MODULE 16
-// CONFIRMATION VISUELLE DES ÉTAPES DU FORMULAIRE
-// ======================================================
+/* ======================================================
+MODULE 16
+RESET CONTRÔLÉ (POST ACTION UNIQUEMENT)
+====================================================== */
 
-document.addEventListener("DOMContentLoaded", function(){
+/* ================================
+RESET CHAMPS CLIENT
+================================ */
 
-const etapes = document.querySelectorAll("[data-etape]");
+function resetFormulaireClient(){
 
-etapes.forEach(function(section){
+  const ids = [
+    "locataire",
+    "telephone",
+    "numeroAppartement",
+    "suffixeAppartement",
+    "adresse",
+    "ville-quebec",
+    "codePostal",
+    "province",
+    "pays",
+    "verificateur"
+  ];
 
-const champs = section.querySelectorAll("input, select, textarea, canvas");
+  ids.forEach(id=>{
+    const champ = document.getElementById(id);
+    if(champ){
+      champ.value = "";
+    }
+  });
 
-champs.forEach(function(champ){
+  const dossier = document.getElementById("numeroDossier");
+  if(dossier) dossier.value = "";
 
-champ.addEventListener("change", verifierEtape);
-champ.addEventListener("input", verifierEtape);
-
-});
-
-});
-
-verifierEtape();
-
-});
-
-
-function verifierEtape(){
-
-document.querySelectorAll("[data-etape]").forEach(function(section){
-
-let complete = true;
-
-section.querySelectorAll("input, select, textarea").forEach(function(champ){
-
-if(champ.type === "checkbox") return;
-
-if(champ.value === "" || champ.value === null){
-complete = false;
 }
 
-});
 
-if(complete){
-section.classList.add("etape-complete");
-}else{
-section.classList.remove("etape-complete");
+/* ================================
+RESET TYPE DE VÉRIFICATION
+================================ */
+
+function resetTypeVerification(){
+
+  const bandeau = document.getElementById("bandeau-mode-verification");
+  const champType = document.getElementById("type-verification");
+
+  if(bandeau){
+    bandeau.textContent = "Mode de vérification : NON SÉLECTIONNÉ";
+  }
+
+  if(champType){
+    champType.value = "";
+  }
+
+  const piecesInterieur = document.getElementById("pieces-interieur");
+  const piecesExterieur = document.getElementById("pieces-exterieur");
+
+  if(piecesInterieur) piecesInterieur.style.display = "block";
+  if(piecesExterieur) piecesExterieur.style.display = "block";
+
 }
 
-});
+
+/* ================================
+RESET PIÈCES
+================================ */
+
+function resetPieces(){
+
+  const liste = document.getElementById("liste-pieces");
+  const section = document.getElementById("section-pieces-verification");
+
+  if(liste){
+    liste.innerHTML = "";
+  }
+
+  if(section){
+    section.style.display = "none";
+  }
+
+}
+
+
+/* ================================
+RESET SIGNATURES
+================================ */
+
+function resetSignatures(){
+
+  const canvasClient = document.getElementById("signature-client");
+  const canvasConsultant = document.getElementById("signature-verificateur");
+
+  if(canvasClient){
+    const ctx = canvasClient.getContext("2d");
+    ctx.clearRect(0, 0, canvasClient.width, canvasClient.height);
+  }
+
+  if(canvasConsultant){
+    const ctx = canvasConsultant.getContext("2d");
+    ctx.clearRect(0, 0, canvasConsultant.width, canvasConsultant.height);
+  }
+
+}
+
+
+/* ================================
+RESET MINUTEUR
+================================ */
+
+function resetMinuteur(){
+
+  const temps = document.getElementById("temps-affiche");
+  const montant = document.getElementById("montant-affiche");
+
+  if(temps) temps.textContent = "00:00:00";
+  if(montant) montant.textContent = "0.00 $";
+
+}
+
+
+/* ================================
+RESET GLOBAL
+================================ */
+
+function resetVerification(){
+
+  resetFormulaireClient();
+  resetTypeVerification();
+  resetPieces();
+  resetSignatures();
+  resetMinuteur();
+
+  const dateField = document.getElementById("verification-date");
+  if(dateField){
+    const now = new Date();
+    dateField.value = now.toISOString().split("T")[0];
+  }
+
+}
+
+
+/* ================================
+FIN DE VÉRIFICATION (SANS RESET)
+================================ */
+
+function verificationComplete(){
+
+  // Génère données rapport
+  if(typeof remplirInformationsRapport === "function"){
+    remplirInformationsRapport();
+  }
+
+  if(typeof injecterFacturationRapport === "function"){
+    injecterFacturationRapport();
+  }
+
+  // Impression
+  if(typeof imprimerRapport === "function"){
+    imprimerRapport();
+  }
+
+  // Email
+  if(typeof envoyerRapportEmail === "function"){
+    envoyerRapportEmail();
+  }
+
+  // Stats
+  if(typeof majStatistiques === "function"){
+    majStatistiques();
+  }
+
+  // ⚠️ AUCUN RESET ICI
 
 }
 
