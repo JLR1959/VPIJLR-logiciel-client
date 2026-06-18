@@ -4,7 +4,7 @@
 const GITHUB_OWNER = "JLR1959";
 const GITHUB_REPO = "VPIJLR";
 const FILE_PATH = "data.json";
-const TOKEN = "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"; // ⚠️ mets ton vrai token
+const TOKEN = ""; // ⚠️ mets ton vrai token
 
 // ==========================
 // LECTURE CLOUD
